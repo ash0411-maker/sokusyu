@@ -13,13 +13,16 @@
           <th>
             <%= Task.human_attribute_name(:created_at) %>
           </th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <% @tasks.each do |t| %>
           <tr>
-            <td><%= t.name %></td>
+            <td><%= link_to t.name, task_path(t) %></td>
             <td><%= t.created_at %></td>
+            <td><%= link_to "編集", edit_task_path(t), class: "btn btn-primary mr-3" %></td>
+            <td><%= link_to "削除", task_path(t), method: :delete, data: {confirm: "タスク#{t.name}を削除すんで？"}, class: "btn btn-danger" %></td>
           </tr>
         <%end%>
       </tbody>

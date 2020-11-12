@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    @task = Task.find(params[:id])
   end
 
   def new
@@ -11,6 +12,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task = Task.find(params[:id])
   end
 
   def create
@@ -19,6 +21,11 @@ class TasksController < ApplicationController
     redirect_to tasks_path, notice: "タスク「#{@task.name}」を登録しました！"
     # redirect_to tasks_path
     # flsah[:notice] = "#{@task.name}を登録しました！"
+  end
+
+  def destroy
+    task = Task.find(params[:id]).destroy
+    redirect_to tasks_path, notice: "タスク「#{task.name}を削除しました。」"
   end
 
   private
