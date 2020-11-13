@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>ユーザー詳細</h1>
+  <%= link_to "一覧", admin_users_path, class: "btn btn-primary" %>
+
+  <div clsas="mb-3">
+    <table class="table table-hover">
+      <thead class="default-thead">
+        <tr>
+          <th><%= User.human_attribute_name(:name) %></th>
+          <th><%= User.human_attribute_name(:email) %></th>
+          <th><%= User.human_attribute_name(:admin) %></th>
+          <th><%= User.human_attribute_name(:created_at) %></th>
+          <th><%= User.human_attribute_name(:updated_at) %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td><%= @user.name %></td>
+            <td><%= @user.email %></td>
+            <td><%= @user.admin == true ? "ある" : "なし" %></td>
+            <td><%= @user.created_at.strftime("%Y-%m-%d") %></td>
+            <td><%= @user.updated_at.strftime("%Y-%m-%d") %></td>
+            <td>
+              <%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-primary" %>
+              <%= link_to "削除", admin_user_path(@user), class: "btn btn-primary", method: :delete %>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
