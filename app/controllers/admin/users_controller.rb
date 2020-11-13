@@ -2,6 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :require_admin
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+
   def index
     @users = User.all
   end
@@ -50,6 +51,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def require_admin
-    
+    redirect_to root_path unless current_user.admin == true
   end
 end
