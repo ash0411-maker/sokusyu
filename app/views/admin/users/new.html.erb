@@ -1,2 +1,31 @@
-<h1>Admin::Users#new</h1>
-<p>Find me in app/views/admin/users/new.html.erb</p>
+<div class="container">
+  <h1>ユーザー登録</h1>
+  <%= form_with model: [:admin, @user], local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :name, "名前"  %>
+      <%= f.text_area :name, class: "form-control"  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email, "メアド"  %>
+      <%= f.text_field :email, class: "form-control"  %>
+    </div>
+
+    <div class="form-check">
+      <%= f.label :admin, "管理者" ,class: "form-check-label" %>
+      <%= f.check_box :admin, class: "form-check-input"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, class: "form-control"  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, "パスワード確認用" %>
+      <%= f.password_field :password_confirmation, class: "form-control"  %>
+    </div>
+
+    <%= f.submit "登録する", class: "btn btn-prinary" %>
+  <% end %>
+</div>
