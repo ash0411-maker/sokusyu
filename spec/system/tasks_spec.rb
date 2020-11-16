@@ -10,10 +10,10 @@ describe 'タスク管理', type: :system do
     context "ユーザーAがログインしている時" do
       before do
         visit login_path
-        find("#session-email").set("a@examle.com")
+        find("#session-email").set("a@example.com")
         find("#session-password").set("password")
 
-        click_button "ログインする"
+        find(".login-btn").click
       end
 
       it "ユーザーAが作成したタスクが表示される" do
