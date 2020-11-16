@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   skip_before_action :login_required
 
   def new
@@ -7,26 +6,24 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: session_params[:email])
-
-    #誰もログインしていない状態 => sesison[:user_id]がnil => ログアウト、もしくはログインしていない状態
-    #誰かがログインしている状態 => sesison[:user_id]にログイン中のユーザーのIDが入る
+    binding.pry
     if user&.authenticate(session_params[:password])
       session[:user_id] = user.id
-      redirect_to root_path, notice: "ログインしました"
+      redirect_to root_path, notice: 'ログインしました。'
     else
-      render :new
+      render :new, notice: 'ログインしました。'
     end
-  end
 
+  end
 
   def destroy
     reset_session
-    redirect_to root_path, notice: "ログアウトしました。"
+    redirect_to root_path, notice: 'ログアウトしました。'
   end
 
   private
 
-    def session_params
-      params.require(:session).permit(:email, :password)
-    end
+  def session_params
+    params.require(:session).permit(:email, :password)
+  end
 end
