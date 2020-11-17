@@ -1,5 +1,4 @@
 class Admin::UsersController < ApplicationController
-  before_action :require_admin
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 
@@ -54,3 +53,4 @@ class Admin::UsersController < ApplicationController
     redirect_to root_path unless current_user.admin == true
   end
 end
+
