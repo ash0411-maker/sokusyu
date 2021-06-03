@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_nameless_name, only: [:show, :edit]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = current_user.tasks.order(created_at: :desc)
@@ -16,7 +16,13 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params.merge(user_id: current_user.id))
+    @task = current_user.tasks.new(task_params)
+
+    if params[:back].present?
+      render :new
+      return
+    end
+
     if @task.save
       redirect_to tasks_path, notice: "タスク「#{@task.name}」を登録しました！"
       # redirect_to tasks_path
@@ -27,8 +33,12 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    task = Task.find(params[:id]).destroy
-    redirect_to tasks_path, notice: "タスク「#{task.name}を削除しました。」"
+    redirect_to tasks_path, notice: "タスク「#{@task.name}を削除しました。」"
+  end
+
+  def new_confirm
+    @task = current_user.tasks.new(task_params)
+    render :new unless @task.valid?
   end
 
   private
