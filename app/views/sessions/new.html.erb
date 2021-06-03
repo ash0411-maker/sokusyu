@@ -1,5 +1,6 @@
 <div class="container">
   <h1>ログイン画面</h1>
+  <h2><%= flash[:notice] %></h2>
  
 
   <%= form_with scope: :session, local: true do |f| %>

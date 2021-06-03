@@ -61,7 +61,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem 'rails-i18n', '~> 5.1'
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'rails'
 gem 'pry-rails'
 gem 'screenshot_opener'
-

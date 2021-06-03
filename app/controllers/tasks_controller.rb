@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -10,7 +9,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = Task.new(task_params)
   end
 
   def edit
